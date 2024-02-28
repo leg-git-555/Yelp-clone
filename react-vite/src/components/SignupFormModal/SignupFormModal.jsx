@@ -8,7 +8,7 @@ function SignupFormModal() {
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [profileImage, setProfileImage] = useState("")
+  const [profileImageUrl, setProfileImageUrl] = useState("")
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +31,7 @@ function SignupFormModal() {
       thunkSignup({
         "first_name": firstName,
         "last_name": lastName,
-        "profile_image": profileImage,
+        "profile_image_url": profileImageUrl,
         email,
         username,
         password,
@@ -50,7 +50,7 @@ function SignupFormModal() {
     <>
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
           First Name
         <input 
@@ -92,11 +92,17 @@ function SignupFormModal() {
         <label>
           Profile Image
           <input 
-            type="text"
-            value={profileImage}
-            onChange={(e) => setProfileImage(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={e => {
+              const size = e.target.files[0].size;
+              if (size > 10 ** 6) return setErrors({ profileImageUrl: "File size must not be larger than 10MB." });
+              setProfileImageUrl(e.target.files[0]);
+              setErrors({ profileImageUrl: "" });
+            }}
           />
         </label>
+        {errors.profileImageUrl && <p className="modal-errors">{errors.profileImageUrl}</p>}
         <label>
           Password
           <input
