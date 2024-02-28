@@ -20,12 +20,12 @@ RUN pip install psycopg2
 COPY . .
 
 #copied from minislack
-RUN flask db downgrade base
-RUN flask db upgrade head
-RUN flask seed all
-CMD gunicorn -k gevent -w 1 app:app
+# RUN flask db downgrade base
+# RUN flask db upgrade head
+# RUN flask seed all
+# CMD gunicorn -k gevent -w 1 app:app
 
 #og starter
-# RUN flask db upgrade
-# RUN flask seed all
-# CMD gunicorn app:app
+RUN flask db upgrade
+RUN flask seed all
+CMD gunicorn app:app
