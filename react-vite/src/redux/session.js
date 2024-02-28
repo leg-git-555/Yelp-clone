@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -41,13 +43,31 @@ export const thunkLogin = (credentials) => async dispatch => {
 };
 
 export const thunkSignup = (user) => async (dispatch) => {
-  // console.log('inside thunk')
+  // console.log('inside thunk 🐼🐼🐼')
+  const { first_name, last_name, profile_image_url, email, username, password } = user;
+
+  const formData = new FormData();
+
+  formData.append("first_name", first_name)
+  formData.append("last_name", last_name)
+  formData.append("email", email)
+  formData.append("username", username)
+  formData.append("password", password)
+
+  if (profile_image_url) formData.append("profile_image_url", profile_image_url);
   // console.log(user)
-  const response = await fetch("/api/auth/signup", {
+  // const response = await fetch("/api/auth/signup", {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(user)
+  // });
+
+  const response = await csrfFetch("/api/auth/signup", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
-  });
+    body: formData
+  })
+
+  console.log(response)
 
   if(response.ok) {
     const data = await response.json();
