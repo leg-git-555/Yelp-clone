@@ -20,6 +20,10 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
+    """ one-to-many (one) """
+    user_businesses = db.relationship("Business", back_populates="owner", cascade="all, delete-orphan")
+    ##cascade works but not in sqlite!
+
     @property
     def password(self):
         return self.hashed_password
