@@ -10,4 +10,5 @@ business_routes = Blueprint("businesses", __name__)
 def businesses():
     """Get all businesses"""
     bs = Business.query.all()
+    #add comment
     pass
