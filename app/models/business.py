@@ -34,5 +34,6 @@ class Business(db.Model):
             "country": self.country,
             "category": self.category,
             "price": self.price,
-            "owner_id": self.owner_id
+            "owner_id": self.owner_id,
+            "image_url": self.image_url
         }

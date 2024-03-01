@@ -9,6 +9,7 @@ business_routes = Blueprint("businesses", __name__)
 @login_required
 def businesses():
     """Get all businesses"""
-    bs = Business.query.all()
+
+    businesses = Business.query.all()
     #add comment
-    pass
+    return {'businesses': [business.to_dict() for business in businesses]}
