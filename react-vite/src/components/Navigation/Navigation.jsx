@@ -7,15 +7,17 @@ function Navigation() {
   const user = useSelector(state => state.session.user)
 
   return (
-    <div>
+    <div className="header">
       <div>
         <NavLink to="/">Home</NavLink>
       </div>
 
-      <div>
-        <ProfileButton />
+      <div className="header-profile">
+        {user && <NavLink to="/businesses/new">create new business</NavLink>}
+        <div>
+          <ProfileButton/>
+        </div>
       </div>
-      {user && <div>{`${user.first_name} is logged in`}</div>}
     </div>
   );
 }

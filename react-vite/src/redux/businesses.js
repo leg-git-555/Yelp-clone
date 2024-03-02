@@ -25,6 +25,8 @@ export const thunkGetBusinesses = () => async (dispatch) => {
 
     }
 }
+
+
 //reducer
 
 const initialState = { businesses: {} };
