@@ -67,7 +67,7 @@ export const thunkSignup = (user) => async (dispatch) => {
     body: formData
   })
 
-  console.log(response)
+  // console.log(response)
 
   if(response.ok) {
     const data = await response.json();
