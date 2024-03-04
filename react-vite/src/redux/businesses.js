@@ -34,7 +34,6 @@ const initialState = { businesses: {} };
 export function businessesReducer (state = initialState, action) {
     switch (action.type) {
         case GET_BUSINESSES: {
-           
             //normalize data
             let bRay = action.payload.businesses
             let bObj = {}

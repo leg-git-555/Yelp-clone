@@ -3,8 +3,9 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import { Homepage } from '../components/Homepage/Homepage';
-import { Test } from '../components/Test/Test';
 import { CreateBusiness } from '../components/CreateBusinessForm/CreateBusiness';
+import { ManageBusinesses } from '../components/ManageBusinesses/ManageBusinesses';
+import { UpdateBusiness } from '../components/UpdateBusiness/UpdateBusiness';
 
 export const router = createBrowserRouter([
   {
@@ -27,8 +28,12 @@ export const router = createBrowserRouter([
         element: <CreateBusiness />,
       },
       {
-        path: "test",
-        element: <Test />,
+        path: "/businesses/current",
+        element: <ManageBusinesses />,
+      },
+      {
+        path: "/businesses/:id/edit",
+        element: <UpdateBusiness />
       },
     ],
   },

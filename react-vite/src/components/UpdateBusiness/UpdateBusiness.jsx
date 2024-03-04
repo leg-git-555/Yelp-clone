@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import './CreateBusiness.css'
-import { csrfFetch } from "../../redux/csrf";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { thunkGetCurrentBusinesses } from "../../redux/currentBusinesses"
+import { csrfFetch } from "../../redux/csrf"
 
-export function CreateBusiness() {
-    // const user = useSelector(state => state.session.user)
+export function UpdateBusiness() {
+    const {id} = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [name, setName] = useState('')
     const [address, setAddress] = useState('')
@@ -20,6 +22,23 @@ export function CreateBusiness() {
 
     const [validations, setValidations] = useState('')
     const [submitBool, setSubmitBool] = useState(false)
+
+    //get current biz from state. dont forget '?' or your app will break!
+    const biz = useSelector(state => state.currentBusinesses[id])
+
+    useEffect(() => {
+        dispatch(thunkGetCurrentBusinesses())
+    }, [dispatch])
+
+    useEffect(() => {
+        if (biz?.name) setName(biz?.name)
+        if (biz?.address) setAddress(biz?.address)
+        if (biz?.city) setCity(biz?.city)
+        if (biz?.state) setState(biz?.state)
+        if (biz?.country) setCountry(biz?.country)
+        if (biz?.category) setCategory(biz?.category)
+        if (biz?.price) setPrice(biz?.price)
+    }, [biz])
 
     useEffect(() => {
         let errorObj = {}
@@ -36,13 +55,15 @@ export function CreateBusiness() {
         setValidations(errorObj)
     }, [setValidations, name, address, city, state, country, category, price, imageSizeE])
 
+    // console.log(image)
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         setSubmitBool(true)
 
             if (Object.keys(validations).length > 0) {
-
-                return
+                console.log('uhoh, errors')
+                return 
             } else {
                 let formData = new FormData()
 
@@ -53,23 +74,21 @@ export function CreateBusiness() {
                 formData.append("country", country)
                 formData.append("category", category)
                 formData.append("price", +price)
-                formData.append("image_url", image )
 
-                let res = await csrfFetch('/api/businesses/new', {
-                    method: "POST",
-                    body: formData
+                if (image) formData.append("image_url", image)
+
+                let res = await csrfFetch(`/api/businesses/${id}`, {
+                    method: "PUT",
+                    body: formData 
                 })
 
                     if (res.ok) {
-                        // const data = await res.json()
-                        navigate(`/`)
-                        // console.log('hooray', data)
+                        navigate('/businesses/current')
                     } else {
                         return
-                        // const errorMessages = await res.json();
-                        // need to handle errors here!!
-                        // console.log('uhoh', errorMessages)
+                        //do something with errors 
                     }
+
             }
 
 
@@ -82,7 +101,7 @@ export function CreateBusiness() {
                 encType="multipart/form-data"
                 onSubmit={e => handleSubmit(e)}
             >
-                <h2>Create a New Business</h2>
+                <h2>Edit Your Business</h2>
                 <label>
                     Name
                     <input
@@ -168,9 +187,8 @@ export function CreateBusiness() {
                     <input
                         type="file"
                         accept="image/*"
-                        required
                         onChange={e => {
-                            const size = e.target.files[0].size;
+                            const size = e.target.files[0]?.size;
                             if (size > 10 ** 6) setImageSizeE("File size must be under 10 MB");
                             else setImageSizeE("")
                             setImage(e.target.files[0]);
@@ -181,7 +199,7 @@ export function CreateBusiness() {
                 <button
                     type="submit"
                 >
-                    Create Business
+                    Update Business
                 </button>
             </form>
 
