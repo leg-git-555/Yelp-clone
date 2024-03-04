@@ -74,7 +74,7 @@ def get_current_users_businesses():
 @login_required
 def update_business(id):
     """Update current user's business by id"""
-    print('🌳🌳🌳🌳🌳🌳🌳')
+
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -118,3 +118,23 @@ def update_business(id):
 
     return{
         "biz": biz.to_dict()}
+
+@business_routes.route("/<int:id>", methods=['DELETE'])
+@login_required
+def delete_business(id):
+    """Delete business specified by id"""
+    biz = Business.query.get(id)
+    user_id = current_user.to_dict()['id']
+
+    if not biz:
+         return { "message": "Business couldn't be found" }, 404
+    
+    if user_id != biz.owner_id:
+         return { "message": "Unauthorized" }, 404
+    
+    db.session.delete(biz)
+    db.session.commit()
+
+    return {"message": f"Successfully delete {biz.name}"}
+
+
