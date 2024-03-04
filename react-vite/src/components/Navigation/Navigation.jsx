@@ -14,6 +14,7 @@ function Navigation() {
 
       <div className="header-profile">
         {user && <NavLink to="/businesses/new">create new business</NavLink>}
+        {user && <NavLink to="/businesses/current">manage your businesses</NavLink>}
         <div>
           <ProfileButton/>
         </div>
