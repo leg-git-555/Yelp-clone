@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { thunkGetCurrentBusinesses } from "../../redux/currentBusinesses"
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { DeleteBusiness } from "../DeleteBusinessModal/DeleteBusiness"
 
 
 export function ManageBusinesses() {
@@ -38,8 +40,13 @@ export function ManageBusinesses() {
                                 >
                                     udpate
                                 </button>
-                                <button>
-                                    delete
+                                <button
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <OpenModalMenuItem 
+                                        modalComponent={<DeleteBusiness id={biz.id} />}
+                                        itemText="Delete"
+                                    />
                                 </button>
                                 
                             </div>
