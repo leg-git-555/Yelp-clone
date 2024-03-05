@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { thunkGetBusinesses } from "../../redux/businesses"
+import { useNavigate } from "react-router-dom"
 
 export function Homepage() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     let businesses = useSelector(state => state.businesses)
@@ -25,7 +27,7 @@ export function Homepage() {
             {user ?
                 <div className="biz-container">
                     {bizRay.map(biz => (
-                        <div title={biz.name} className="biz-card" key={biz.id}>
+                        <div title={biz.name} className="biz-card" key={biz.id} onClick={() => navigate(`/businesses/${biz.id}`)} >
                             <div>{biz.name}</div>
                             <div className="biz-card-image-container">
                                 <img src={biz.image_url}></img>

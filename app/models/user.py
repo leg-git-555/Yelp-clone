@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
     """ one-to-many (one) """
     user_businesses = db.relationship("Business", back_populates="owner", cascade="all, delete-orphan")
     ##cascade works but not in sqlite!
+    user_reviews = db.relationship("Review", back_populates="owner", cascade="all, delete-orphan")
 
     @property
     def password(self):
