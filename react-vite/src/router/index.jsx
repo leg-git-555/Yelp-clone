@@ -6,6 +6,7 @@ import { Homepage } from '../components/Homepage/Homepage';
 import { CreateBusiness } from '../components/CreateBusinessForm/CreateBusiness';
 import { ManageBusinesses } from '../components/ManageBusinesses/ManageBusinesses';
 import { UpdateBusiness } from '../components/UpdateBusiness/UpdateBusiness';
+import { Business } from '../components/Business/Business';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "businesses/new",
         element: <CreateBusiness />,
+      },
+      {
+        path: "businesses/:bizId",
+        element: <Business />,
       },
       {
         path: "/businesses/current",
