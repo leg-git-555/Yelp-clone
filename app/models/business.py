@@ -24,6 +24,9 @@ class Business(db.Model):
     """ one-to-many (many) """
     owner = db.relationship("User", back_populates="user_businesses")
 
+    """ one-to-many (one) """
+    business_reviews = db.relationship("Review", back_populates="business", cascade="all, delete-orphan")
+
     def to_dict(self):
         return {
             "id": self.id,
