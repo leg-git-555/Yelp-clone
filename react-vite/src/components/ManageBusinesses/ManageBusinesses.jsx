@@ -34,7 +34,7 @@ export function ManageBusinesses() {
                             <div className="biz-card-button-container">
                                 <button
                                 onClick={e => {
-                                    e.stopPropagation
+                                    e.stopPropagation()
                                     return navigate(`/businesses/${biz.id}/edit`)
                                 }}
                                 >

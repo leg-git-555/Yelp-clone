@@ -6,7 +6,7 @@ import { thunkGetReviews } from "../../redux/reviews"
 import './Business.css'
 
 export function Business() {
-    const {bizId} = useParams()
+    const { bizId } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -21,21 +21,20 @@ export function Business() {
     const reviews = useSelector(state => state.reviews)
     let curr_reviews = []
 
-    
-    for (let id in reviews) {
-        //find current reviews
-        if (reviews[id].business_id === +bizId) {
-            curr_reviews.push(reviews[id])
+        for (let id in reviews) {
+            //find current reviews
+            if (reviews[id].business_id === +bizId) {
+                curr_reviews.push(reviews[id])
+            }
         }
-    }
-    
+
     //check if user is owner of the current biz
     let ownerBool;
     if (biz?.owner_id === user?.id) ownerBool = true
-    
+
     //check if user has already written a review
     let reviewBool;
-    
+
     for (let review of curr_reviews) {
         if (review?.owner_id === user?.id) reviewBool = true
     }
@@ -53,16 +52,27 @@ export function Business() {
                 <img src={biz?.image_url}></img>
             </div>
             <div className="review-break">Reviews</div>
-                {!ownerBool && !reviewBool && 
-                    <button className="post-review-button" onClick={() => navigate(`/businesses/${bizId}/reviews/new`)}>Post a review +</button>
-                }
+            {!ownerBool && !reviewBool &&
+                <button className="post-review-button" onClick={() => navigate(`/businesses/${bizId}/reviews/new`)}>Post a review +</button>
+            }
             <div className="reviews-container">
-                {curr_reviews.map(review => 
+                {curr_reviews.map(review =>
                     <div className="review-card" key={review.id}>
-                        {review.review}
+                        <div>
+                            {review.review}
+                            {review?.owner_id === user?.id &&
+                                <div>
+                                    <button onClick={(e) => {
+                                        e.stopPropagation()
+                                        return navigate(`/businesses/${bizId}/reviews/${review.id}/edit`)
+                                    }}>update</button>
+                                    <button>delete</button>
+                                </div>
+                            }
+                        </div>
                     </div>
-                    
-                    )}
+
+                )}
             </div>
         </div>
     )

@@ -89,7 +89,7 @@ def update_business(id):
     if user_id != biz.owner_id:
          return { "message": "Unauthorized" }, 404
     
-    #update fields
+    #update columns
     biz.name = form.data["name"]
     biz.address = form.data["address"]
     biz.city = form.data["city"]
