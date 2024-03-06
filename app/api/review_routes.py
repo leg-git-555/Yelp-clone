@@ -23,12 +23,13 @@ def create_review():
     #user_id is int type
     user_id = current_user.to_dict()['id']
 
+    biz_id = form.data["business_id"]
     biz = Business.query.get(form.data["business_id"])
 
     #validations
     if biz.owner_id == user_id: 
         return { "message": "Unauthorized" }, 404
-    
+     
     review = Review(
         review=form.data["review"],
         rating=form.data["rating"],
@@ -40,8 +41,5 @@ def create_review():
     db.session.commit()
 
     return review.to_dict()
-
-    return {"user_id": user_id,
-            "form data": form.data,
-            "biz": biz.to_dict()}
+    ##this route needs more protection 
 
