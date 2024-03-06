@@ -43,3 +43,34 @@ def create_review():
     return review.to_dict()
     ##this route needs more protection 
 
+@review_routes.route("/<int:id>", methods=['PUT'])
+@login_required
+def update_review(id):
+    """Update a review by id"""
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    user_id = current_user.to_dict()['id']
+
+    review = Review.query.get(id)
+
+    #validations
+    if not review:
+         return { "message": "Review couldn't be found" }, 404
+    
+    if user_id != review.owner_id:
+         return { "message": "Unauthorized" }, 404
+    
+    #update columns
+    review.review = form.data["review"]
+    review.rating = form.data["rating"]
+
+    db.session.commit()
+    
+
+
+    return {
+        "review": review.to_dict()
+    }
+

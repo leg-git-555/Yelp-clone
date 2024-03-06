@@ -8,6 +8,7 @@ import { ManageBusinesses } from '../components/ManageBusinesses/ManageBusinesse
 import { UpdateBusiness } from '../components/UpdateBusiness/UpdateBusiness';
 import { Business } from '../components/Business/Business';
 import { CreateReview } from '../components/CreateReviewForm/CreateReview';
+import { UpdateReview } from '../components/Update Review/UpdateReview';
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/businesses/:bizId/reviews/new",
         element: <CreateReview />
+      },
+      {
+        path: "/businesses/:bizId/reviews/:reviewId/edit",
+        element: <UpdateReview />
       },
     ],
   },

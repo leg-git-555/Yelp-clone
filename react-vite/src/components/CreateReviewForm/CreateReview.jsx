@@ -88,8 +88,8 @@ export function CreateReview() {
                 {submitBool && validations.review && <p className='validation-error'>{validations.review}</p>}
 
                 <ReactStars 
-                    rating={rating}
-                    starCount={5}
+                    value={rating}
+                    count={5}
                     size={50}
                     onChange={ratingChanged}
                 />
