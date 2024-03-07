@@ -2,11 +2,20 @@ import { csrfFetch } from "./csrf";
 
 //action types
 const GET_BUSINESSES = 'businesses/getBusinesses'
+const DELETE_A_BUSINESS = 'businesses/deleteABusiness'
 
 //actions
 const actionGetBusinesses = (payload) => {
     return {
         type: GET_BUSINESSES,
+        payload
+    }
+}
+
+export const actionDeleteABusiness = (payload) => {
+    console.log('inside action', payload)
+    return {
+        type: DELETE_A_BUSINESS,
         payload
     }
 }
@@ -40,6 +49,14 @@ export function businessesReducer (state = initialState, action) {
             bRay.forEach(b => bObj[b.id] = b)
             
             return {...state, businesses: bObj}
+        } case DELETE_A_BUSINESS: {
+            console.log('inside reducer', action.payload)
+            console.log(state)
+            console.log(state.businesses)
+            let newState = {...state}
+            delete newState.businesses[action.payload]
+            
+            return newState
         }
         default:
             return state

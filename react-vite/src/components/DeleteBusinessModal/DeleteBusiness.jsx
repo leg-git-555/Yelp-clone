@@ -1,12 +1,12 @@
 import { useModal } from "../../context/Modal"
 // import { useNavigate } from "react-router-dom"
-// import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { csrfFetch } from "../../redux/csrf"
-// import { thunkGetBusinesses } from "../../redux/businesses"
-// import { thunkGetCurrentBusinesses } from "../../redux/currentBusinesses"
+import { actionDeleteACurrentBusiness } from "../../redux/currentBusinesses"
+import {actionDeleteABusiness} from "../../redux/businesses"
 
 export function DeleteBusiness({ id }) {
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     // const navigate = useNavigate()
 
     const {closeModal} = useModal()
@@ -16,11 +16,9 @@ export function DeleteBusiness({ id }) {
         await csrfFetch(`/api/businesses/${id}`, {
             method: "DELETE"
         })
-
-        //thought below would update businesses on page
-        // dispatch(thunkGetBusinesses())
-        // dispatch(thunkGetCurrentBusinesses())
-        // navigate('businesses/current')
+        dispatch(actionDeleteACurrentBusiness(id))
+        dispatch(actionDeleteABusiness(id))
+        
         closeModal()
     }
 
