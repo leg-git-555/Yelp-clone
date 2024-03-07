@@ -41,7 +41,6 @@ export function CreateBusiness() {
         setSubmitBool(true)
 
             if (Object.keys(validations).length > 0) {
-
                 return
             } else {
                 let formData = new FormData()

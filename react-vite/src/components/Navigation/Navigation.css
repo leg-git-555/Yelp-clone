@@ -9,16 +9,34 @@
   gap: 10px;
 }
 
+  .logo-container {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+  }
+
+    .logo-container > h1 {
+      padding-bottom: 30px;
+    }
+
+    .logo-container > img {
+      padding-top: 10px;
+      height: 50px;
+      width: 50px;
+    }
 
   #profile-button {
-    background-color: aqua;
     height: 50px;
     width: 50px;
     margin-right: 20px;
     margin-left: 20px;
+    cursor: pointer;
   }
 
   .profile-pic {
     height: 40px;
     width: 40px;
   }
+
