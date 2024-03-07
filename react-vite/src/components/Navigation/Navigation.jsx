@@ -13,10 +13,17 @@ function Navigation() {
       </div>
 
       <div className="header-profile">
-        {user && <NavLink to="/businesses/new">create new business</NavLink>}
-        {user && <NavLink to="/businesses/current">manage your businesses</NavLink>}
         <div>
-          <ProfileButton/>
+          {user && <NavLink to="/businesses/new">create new business</NavLink>}
+        </div>
+        <div>
+          {user && <NavLink to="/businesses/current">manage your businesses</NavLink>}
+        </div>
+        <div>
+          {user && <img className="profile-pic" src={user.profile_image_url} />}
+        </div>
+        <div>
+          <ProfileButton />
         </div>
       </div>
     </div>

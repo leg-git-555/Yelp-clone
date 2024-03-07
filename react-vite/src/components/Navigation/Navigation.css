@@ -1,11 +1,24 @@
+
+
 .profile-dropdown {
   position: absolute;
 }
 
-#profile-button {
-  background-color: aqua;
-  height: 40px;
-  width: 40px;
-  margin-right: 20px;
-  margin-left: 20px;
+.header-profile {
+  display: flex;
+  gap: 10px;
 }
+
+
+  #profile-button {
+    background-color: aqua;
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .profile-pic {
+    height: 40px;
+    width: 40px;
+  }
