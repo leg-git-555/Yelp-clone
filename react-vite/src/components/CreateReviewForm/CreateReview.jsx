@@ -41,7 +41,6 @@ export function CreateReview() {
         setSubmitBool(true)
 
         if (Object.keys(validations).length > 0) {
-            console.log('errors')
             return
         } else {
             let formDataOne = new FormData()
