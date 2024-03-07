@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { thunkGetCurrentBusinesses } from "../../redux/currentBusinesses"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { DeleteBusiness } from "../DeleteBusinessModal/DeleteBusiness"
+import { thunkGetBusinesses } from "../../redux/businesses"
 
 
 export function ManageBusinesses() {
@@ -19,6 +20,7 @@ export function ManageBusinesses() {
    
     useEffect(() => {
         dispatch(thunkGetCurrentBusinesses())
+        dispatch(thunkGetBusinesses())
     }, [dispatch])
 
     return (

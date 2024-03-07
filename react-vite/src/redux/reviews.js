@@ -2,12 +2,20 @@ import { csrfFetch } from "./csrf";
 
 //action types
 const GET_REVIEWS = 'reviews/getReviews'
+const DELETE_REVIEW = 'reviews/deleteReview'
 
 //actions
 const actionGetReviews = (payload) => {
     // console.log('payload', payload)
     return {
         type: GET_REVIEWS,
+        payload
+    }
+}
+
+export const actionDeleteReview = (payload) => {
+    return {
+        type: DELETE_REVIEW,
         payload
     }
 }
@@ -42,6 +50,10 @@ export function reviewsReducer (state = initialState, action) {
             let reviewObj = {}
             action.payload.forEach(review => reviewObj[review.id] = review)
             return reviewObj
+        } case DELETE_REVIEW: {
+            let newState = {...state}
+            delete newState[action.payload]
+            return newState
         }
         default:
             return state

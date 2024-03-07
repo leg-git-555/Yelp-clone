@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { thunkGetBusinesses } from "../../redux/businesses"
 import { thunkGetReviews } from "../../redux/reviews"
 import './Business.css'
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
+import { DeleteReview } from "../DeleteReviewModal/DeleteReview"
 
 export function Business() {
     const { bizId } = useParams()
@@ -66,7 +68,12 @@ export function Business() {
                                         e.stopPropagation()
                                         return navigate(`/businesses/${bizId}/reviews/${review.id}/edit`)
                                     }}>update</button>
-                                    <button>delete</button>
+                                    <button>
+                                        <OpenModalMenuItem 
+                                            modalComponent={<DeleteReview id={review.id} />}
+                                            itemText="Delete"
+                                        />
+                                    </button>
                                 </div>
                             }
                         </div>
