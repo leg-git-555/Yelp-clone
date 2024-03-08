@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { thunkGetBusinesses } from "../../redux/businesses"
 import { useNavigate } from "react-router-dom"
+import './Homepage.css'
 
 export function Homepage() {
     const navigate = useNavigate()
@@ -9,14 +10,11 @@ export function Homepage() {
     const user = useSelector(state => state.session.user)
     let businesses = useSelector(state => state.businesses)
     businesses = businesses.businesses
-    // console.log(user)
+
     let bizRay = []
     for (let biz in businesses) {
         bizRay.push(businesses[biz])
     }
-    // console.log(bizRay)
-    // console.log(businesses)
-
 
     useEffect(() => {
         dispatch(thunkGetBusinesses())
@@ -39,8 +37,21 @@ export function Homepage() {
                     </div>
                 </div>
                 :
-                <div>
-                    login using the button on the top right!
+                <div className="splash">
+                    <h2>Welcome</h2>
+
+                    <h3>
+                        Yelpoli is a business-review site serving the greater Newark area.
+                    </h3>
+                    <h3>
+                        Business owners can add their business's information, customers can leave reviews.
+                    </h3>
+                    <h3>
+                        Get started by clicking the green user button at the top right of the page to login, signup, or test the site as a demo user.
+                    </h3>
+                    <h4>
+                        Yelpoli is a wholly owned subsidiary of Barone Sanitation & Cartage Inc.
+                    </h4>
                 </div>
             }
         </div>
