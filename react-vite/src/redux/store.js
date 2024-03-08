@@ -9,13 +9,15 @@ import sessionReducer from "./session";
 import { businessesReducer } from "./businesses";
 import { currentBusinessesReducer } from "./currentBusinesses";
 import { reviewsReducer } from "./reviews";
+import { usersReducer } from "./users";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   businesses: businessesReducer,
   currentBusinesses: currentBusinessesReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  users: usersReducer
 });
 
 let enhancer;

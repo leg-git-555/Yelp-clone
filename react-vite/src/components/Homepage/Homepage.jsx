@@ -25,16 +25,20 @@ export function Homepage() {
     return (
         <div>
             {user ?
-                <div className="biz-container">
-                    {bizRay.map(biz => (
-                        <div title={biz.name} className="biz-card" key={biz.id} onClick={() => navigate(`/businesses/${biz.id}`)} >
-                            <div>{biz.name}</div>
-                            <div className="biz-card-image-container">
-                                <img src={biz.image_url}></img>
+                <div>
+                    <h2>Your Next Review Awaits</h2>
+                    <div className="biz-container">
+                        {bizRay.map(biz => (
+                            <div title={biz.name} className="biz-card" key={biz.id} onClick={() => navigate(`/businesses/${biz.id}`)} >
+                                <div>{biz.name}</div>
+                                <div className="biz-card-image-container">
+                                    <img src={biz.image_url}></img>
+                                </div>
                             </div>
-                        </div>
-                    ))} 
-                </div> :
+                        ))}
+                    </div>
+                </div>
+                :
                 <div>
                     login using the button on the top right!
                 </div>

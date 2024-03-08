@@ -50,7 +50,7 @@ export function CreateReview() {
             formDataOne.append("business_id", bizId)
 
             try {
-                let res = csrfFetch('/api/reviews/new', {
+                let res = await csrfFetch('/api/reviews/new', {
                     method: "POST",
                     body: formDataOne
                 })

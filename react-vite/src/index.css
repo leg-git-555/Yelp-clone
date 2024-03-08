@@ -1,18 +1,29 @@
 /* TODO: Add sitewide styles */
 body {
-    background-color: black;
-    color: pink
+    font-family: Helvetica Neue, Arial, sans-serif;
+    background-color: #fafafa;
+    color: black
+}
+
+button {
+    background-color: rgb(49, 169, 53);
+    border-radius: 7px;
+    margin: 5px;
+    cursor: pointer;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 100px;
+    background-color: #fafafa;
 }
+
+
 
     .header-profile {
         display: flex;
-        background-color: azure;
+        background-color: #fafafa;
         align-items: baseline;
     }
 
@@ -25,6 +36,7 @@ body {
         justify-content: center;
     }
 
+    /*try setting constant width / height */
         .biz-card {
             display: flex;
             flex-direction: column;
@@ -46,7 +58,7 @@ body {
                 .biz-card-image-container > img {
                     max-width: 100%;
                     max-height: 100%;
-                    /* object-fit: cover; */
+                    object-fit: cover;
                 }
 
 
