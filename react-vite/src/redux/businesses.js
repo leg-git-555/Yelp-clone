@@ -50,9 +50,7 @@ export function businessesReducer (state = initialState, action) {
             
             return {...state, businesses: bObj}
         } case DELETE_A_BUSINESS: {
-            console.log('inside reducer', action.payload)
-            console.log(state)
-            console.log(state.businesses)
+    
             let newState = {...state}
             delete newState.businesses[action.payload]
             

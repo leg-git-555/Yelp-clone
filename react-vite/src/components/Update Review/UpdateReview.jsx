@@ -36,8 +36,8 @@ export function UpdateReview() {
     //pre-populate form
     useEffect(() => {
         if (curr_review?.review) setReview(curr_review.review)
-        // if (curr_review?.rating) setRating(curr_review.rating)
-    }, [curr_review, setReview])
+        if (curr_review?.rating) setRating(curr_review.rating)
+    }, [curr_review])
 
     //form validations
     useEffect(() => {
@@ -87,7 +87,7 @@ export function UpdateReview() {
         }
 
     }
-    
+
     return (
         <div className="create-business-form-container">
         <form
@@ -103,6 +103,7 @@ export function UpdateReview() {
             />
             {submitBool && validations.review && <p className='validation-error'>{validations.review}</p>}
 
+            {rating && 
             <ReactStars 
                 // rating={rating}
                 value={rating}
@@ -110,7 +111,7 @@ export function UpdateReview() {
                 size={50}
                 edit={true}
                 onChange={ratingChanged}
-            />
+            />}
             {submitBool && validations.rating && <p className='validation-error'>{validations.rating}</p>}
             <label>
                 Image one
