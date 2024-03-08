@@ -1,0 +1,12 @@
+
+.splash {
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: rgb(49, 169, 53);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.splash >h2 {
+    text-align: center;
+}
