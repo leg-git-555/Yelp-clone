@@ -61,6 +61,10 @@ button {
                     object-fit: cover;
                 }
 
+                .validation-error {
+                    color: brown;
+                }
+
 
 
         /* .biz-card {

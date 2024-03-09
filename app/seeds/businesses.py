@@ -38,6 +38,17 @@ def seed_businesses():
             "image_url": "https://aa-image-bucket.s3.us-east-2.amazonaws.com/vesuvio.jpg",
             "owner_id": 6
         },
+        {
+            "name": "The Palm Court",
+            "address": "4 Seed Street",
+            "city": "New York",
+            "state": "New York",
+            "country": "USA",
+            "category": "fine dining ",
+            "price": 3,
+            "image_url": "https://aa-image-bucket.s3.us-east-2.amazonaws.com/palm-court.jpg",
+            "owner_id": 6
+        },
     ]
 
     [db.session.add(Business(**business)) for business in businesses]
