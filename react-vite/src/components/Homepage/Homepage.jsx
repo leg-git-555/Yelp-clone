@@ -3,6 +3,8 @@ import { useEffect } from "react"
 import { thunkGetBusinesses } from "../../redux/businesses"
 import { useNavigate } from "react-router-dom"
 import './Homepage.css'
+import { FaDollarSign } from "react-icons/fa";
+import { LuDot } from "react-icons/lu";
 
 export function Homepage() {
     const navigate = useNavigate()
@@ -28,10 +30,30 @@ export function Homepage() {
                     <div className="biz-container">
                         {bizRay.map(biz => (
                             <div title={biz.name} className="biz-card" key={biz.id} onClick={() => navigate(`/businesses/${biz.id}`)} >
-                                <div>{biz.name}</div>
                                 <div className="biz-card-image-container">
                                     <img src={biz.image_url}></img>
                                 </div>
+                                <div>
+                                    <div className="biz-card-biz-name">{biz.name}</div>
+                                    <div id='biz-address'>{`${biz?.address}, ${biz?.city}, ${biz?.state}`}</div>
+                                    <div className="category-dollar-container">
+                                        <div>{`${biz?.category}`}</div>
+                                        <LuDot />
+                                        {biz?.price === 1 && <FaDollarSign />}
+                                        {biz?.price === 2 &&
+                                            <div>
+                                                <FaDollarSign />
+                                                <FaDollarSign />
+                                            </div>}
+                                        {biz?.price === 3 &&
+                                            <div>
+                                                <FaDollarSign />
+                                                <FaDollarSign />
+                                                <FaDollarSign />
+                                            </div>}
+                                    </div>
+                                </div>
+
                             </div>
                         ))}
                     </div>
