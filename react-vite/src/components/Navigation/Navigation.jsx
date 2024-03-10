@@ -21,13 +21,11 @@ function Navigation() {
         <div>
           {user && <NavLink to="/businesses/current">manage your businesses</NavLink>}
         </div>
-        <div>
           {user && <img className="profile-pic" src={user.profile_image_url} />}
-        </div>
+      </div>
         <div>
           <ProfileButton />
         </div>
-      </div>
     </div>
   );
 }

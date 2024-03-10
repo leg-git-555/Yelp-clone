@@ -40,36 +40,36 @@ export function CreateBusiness() {
         e.preventDefault();
         setSubmitBool(true)
 
-            if (Object.keys(validations).length > 0) {
-                return
+        if (Object.keys(validations).length > 0) {
+            return
+        } else {
+            let formData = new FormData()
+
+            formData.append("name", name)
+            formData.append("address", address)
+            formData.append("city", city)
+            formData.append("state", state)
+            formData.append("country", country)
+            formData.append("category", category)
+            formData.append("price", +price)
+            formData.append("image_url", image)
+
+            let res = await csrfFetch('/api/businesses/new', {
+                method: "POST",
+                body: formData
+            })
+
+            if (res.ok) {
+                // const data = await res.json()
+                navigate(`/`)
+                // console.log('hooray', data)
             } else {
-                let formData = new FormData()
-
-                formData.append("name", name)
-                formData.append("address", address)
-                formData.append("city", city)
-                formData.append("state", state)
-                formData.append("country", country)
-                formData.append("category", category)
-                formData.append("price", +price)
-                formData.append("image_url", image )
-
-                let res = await csrfFetch('/api/businesses/new', {
-                    method: "POST",
-                    body: formData
-                })
-
-                    if (res.ok) {
-                        // const data = await res.json()
-                        navigate(`/`)
-                        // console.log('hooray', data)
-                    } else {
-                        return
-                        // const errorMessages = await res.json();
-                        // need to handle errors here!!
-                        // console.log('uhoh', errorMessages)
-                    }
+                return
+                // const errorMessages = await res.json();
+                // need to handle errors here!!
+                // console.log('uhoh', errorMessages)
             }
+        }
 
 
     }
@@ -83,7 +83,9 @@ export function CreateBusiness() {
             >
                 <h2>Create a New Business</h2>
                 <label>
-                    Name
+                    <div>
+                        Name
+                    </div>
                     <input
                         type="text"
                         value={name}
@@ -93,7 +95,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.name && <p className='validation-error'>{validations.name}</p>}
                 <label>
-                    Address
+                    <div>
+                        Address
+                    </div>
                     <input
                         type="text"
                         value={address}
@@ -103,7 +107,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.address && <p className='validation-error'>{validations.address}</p>}
                 <label>
-                    City
+                    <div>
+                        City
+                    </div>
                     <input
                         type="text"
                         value={city}
@@ -113,7 +119,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.city && <p className='validation-error'>{validations.city}</p>}
                 <label>
-                    State
+                    <div>
+                        State
+                    </div>
                     <input
                         type="text"
                         value={state}
@@ -123,7 +131,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.state && <p className='validation-error'>{validations.state}</p>}
                 <label>
-                    Country
+                    <div>
+                        Country
+                    </div>
                     <input
                         type="text"
                         value={country}
@@ -133,7 +143,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.country && <p className='validation-error'>{validations.country}</p>}
                 <label>
-                    Dining Category
+                    <div>
+                        Dining Category
+                    </div>
                     <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
@@ -148,7 +160,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.category && <p className='validation-error'>{validations.category}</p>}
                 <label>
-                    Price
+                    <div>
+                        Price
+                    </div>
                     <select
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
@@ -163,7 +177,9 @@ export function CreateBusiness() {
                 </label>
                 {submitBool && validations.price && <p className='validation-error'>{validations.price}</p>}
                 <label>
-                    Business Image
+                    <div>
+                        Business Image
+                    </div>
                     <input
                         type="file"
                         accept="image/*"

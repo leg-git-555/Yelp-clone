@@ -23,6 +23,30 @@ def seed_reviews():
             "owner_id": 2,
             "business_id": 3
         },
+        {
+            "review": f"Best meats and italian subs in town. Patio is nice when weather is nice. Neighborhood is on its way back up",
+            "rating": 5,
+            "owner_id": 2,
+            "business_id": 2
+        },
+        {
+            "review": f"Look at my beautiful grandaughter in the picture. They should pay her to eat there. The uniforms the staff wear are ridiculous. The macroons are always stale. Overpriced.",
+            "rating": 2,
+            "owner_id": 4,
+            "business_id": 4
+        },
+        {
+            "review": f"Overrated and overpriced. Loud men always take up the patio seating. The place has gone downhill since Vincenzo Centanni passed, rest his soul.",
+            "rating": 2,
+            "owner_id": 4,
+            "business_id": 2
+        },
+        {
+            "review": f"Bucco's Vesuvio is without question the best Italian restaurant in New Jersey! Their homemade pasta dishes are divine, bursting with fresh flavors and perfectly cooked.  We can't wait to go back and try their signature Sunday gravy!",
+            "rating": 2,
+            "owner_id": 3,
+            "business_id": 3
+        },
     ]
 
     [db.session.add(Review(**review)) for review in reviews]

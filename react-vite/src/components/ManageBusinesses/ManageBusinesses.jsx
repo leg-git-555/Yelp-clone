@@ -5,6 +5,7 @@ import { thunkGetCurrentBusinesses } from "../../redux/currentBusinesses"
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem"
 import { DeleteBusiness } from "../DeleteBusinessModal/DeleteBusiness"
 import { thunkGetBusinesses } from "../../redux/businesses"
+import "./ManageBusinesses.css"
 
 
 export function ManageBusinesses() {
@@ -17,7 +18,7 @@ export function ManageBusinesses() {
     for (let biz in currentBusinesses) {
         bizRay.push(currentBusinesses[biz])
     }
-   
+
     useEffect(() => {
         dispatch(thunkGetCurrentBusinesses())
         dispatch(thunkGetBusinesses())
@@ -27,34 +28,36 @@ export function ManageBusinesses() {
         <div>
             <h1>Manage your businesses</h1>
             <div className="biz-container">
-                    {bizRay.map(biz => (
-                        <div title={biz.name} className="biz-card" key={biz.id}>
-                            <div>{biz.name}</div>
-                            <div className="biz-card-image-container">
-                                <img src={biz.image_url}></img>
-                            </div>
+                {bizRay.map(biz => (
+                    <div title={biz.name} className="biz-card" key={biz.id}>
+                        <div className="biz-card-image-container">
+                            <img src={biz.image_url}></img>
+                        </div>
+                        <div>
+                            <div id="manage-biz-biz-name">{biz.name}</div>
                             <div className="biz-card-button-container">
                                 <button
-                                onClick={e => {
-                                    e.stopPropagation()
-                                    return navigate(`/businesses/${biz.id}/edit`)
-                                }}
+                                    onClick={e => {
+                                        e.stopPropagation()
+                                        return navigate(`/businesses/${biz.id}/edit`)
+                                    }}
                                 >
                                     udpate
                                 </button>
                                 <button
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <OpenModalMenuItem 
+                                    <OpenModalMenuItem
                                         modalComponent={<DeleteBusiness id={biz.id} />}
                                         itemText="Delete"
                                     />
                                 </button>
-                                
+
                             </div>
                         </div>
-                    ))} 
-                </div>
+                    </div>
+                ))}
+            </div>
 
         </div>
     )
