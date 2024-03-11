@@ -46,7 +46,8 @@ export function currentBusinessesReducer (state = currentBusinesses, action) {
             let bRay = action.payload
             let bObj = {}
             bRay.forEach(b => bObj[b.id] = b)
-            return {...state, ...bObj}
+            //cannot spread prior state or switching between accounts breaks
+            return {...bObj}
         } case DELETE_A_CURRENT_BUSINESS: {
         
             let newState = {...state}

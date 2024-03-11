@@ -4,7 +4,7 @@
 }
 
     .single-biz-img-container {
-        width: 60%;
+        max-width: 60%;
         /* max-height: 300px; HEIGHT BREAKS IT*/
         object-fit: cover;
         margin-right: 10px;
