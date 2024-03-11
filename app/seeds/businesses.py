@@ -25,7 +25,7 @@ def seed_businesses():
             "category": "fast casual",
             "price": 2,
             "image_url": "https://aa-image-bucket.s3.us-east-2.amazonaws.com/centannis.jpeg",
-            "owner_id": 4
+            "owner_id": 1
         },
         {
             "name": "Bucco's Vesuvio",
