@@ -50,6 +50,10 @@ export const router = createBrowserRouter([
         path: "/businesses/:bizId/reviews/:reviewId/edit",
         element: <UpdateReview />
       },
+      {
+        path: '*',
+        element: <Homepage />
+      }
     ],
   },
 ]);
