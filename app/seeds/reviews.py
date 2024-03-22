@@ -43,7 +43,7 @@ def seed_reviews():
         },
         {
             "review": f"Bucco's Vesuvio is without question the best Italian restaurant in New Jersey! Their homemade pasta dishes are divine, bursting with fresh flavors and perfectly cooked.  We can't wait to go back and try their signature Sunday gravy!",
-            "rating": 2,
+            "rating": 5,
             "owner_id": 3,
             "business_id": 3
         },
