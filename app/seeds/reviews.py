@@ -30,7 +30,7 @@ def seed_reviews():
             "business_id": 2
         },
         {
-            "review": f"Look at my beautiful grandaughter in the picture. They should be paying her. The uniforms the staff wear are ridiculous. The macroons are always stale. Overpriced.",
+            "review": f"Look at my beautiful grandaughter in the picture. They should be paying her to dine here. The uniforms the staff wear are ridiculous. The macroons are always stale. Overpriced.",
             "rating": 2,
             "owner_id": 4,
             "business_id": 4
